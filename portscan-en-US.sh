@@ -43,6 +43,10 @@ white="\033[35;1m"
         else
                 echo "Required port parameter"
         fi
+
+        if [[ "$3" < "$2" ]]; then
+            echo "Warning: the end port cannot be less than the start port"
+        fi
 #}
 
 function tcp() {
@@ -64,14 +68,14 @@ function udp() {
     for port in `seq $2 $3`;
     do
     timeout 0 bash -c "</dev/$protocol/$1/$port" &>/dev/null \
-    && echo -ne "+ - -  -- [ PORT $porta  - OPEN ] --  - - +     \n" \
-    || sleep 0 ; echo -ne "Scanning port $porta\e[K\r"
+    && echo -ne "+ - -  -- [ PORT $port  - OPEN ] --  - - +     \n" \
+    || sleep 0 ; echo -ne "Scanning port $port\e[K\r"
     done
 }
 
-options=("tcp" "udp" "sair")
+options=("tcp" "udp" "quit")
 
-if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
+if [[ -z "$1" || -z "$2" || -z "$3" || "$3" < "$2" ]]; then
         #domain
         #port
         echo "Example of use: ./portscan-en-US.sh google.com 50 80"
@@ -88,7 +92,7 @@ elif (expr $2 + 1 > /dev/null 2>/dev/null) && (expr $3 + 1 > /dev/null 2> /dev/n
                         udp $1 $2 $3
                         break
                 ;;  
-                "sair")
+                "quit")
                         echo "Leaving..."
                         break
                 ;;
