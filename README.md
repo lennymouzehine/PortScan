@@ -6,13 +6,22 @@ Using the bash interpreter, this script will do a port scan, recommended for int
 ### * Using the `script`
 
 ```
+Cloning script
 $ git clone https://github.com/lennymouzehine/PortScan
+
+Entering the script folder
 $ cd PortScan
+
+Releasing permission to run the script
 $ chmod +x portscan.sh
+
+Running the script
 $ ./portscan.sh
 
+Example of usage
 $ bash portscan.sh 127.0.0.1 80 443
 ```
+
 ***
 # Português
 ***
@@ -23,12 +32,16 @@ Usando o interpretador bash, esse script fará uma varredura de portas, recomend
 ```
 Clonando o script
 $ git clone https://github.com/lennymouzehine/PortScan
+
 Entrando na pasta do script
 $ cd PortScan
+
 Dando permissão para iniciar o script
 $ chmod +x portscan-pt-BR.sh
+
 Iniciando o script
 $ ./portscan-pt-BR.sh
+
 Exemplo de uso
 $ bash portscan-pt-BR.sh 127.0.0.1 80 443
 ```
