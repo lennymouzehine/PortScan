@@ -7,11 +7,11 @@
 	-- + exemplos de uso + --
 
 #Iniciando	    		#Dominio	#Portas
-chmod +x port-scan.sh
-./port-scan.sh			127.0.0.1 	1  50
-source port-scan.sh		127.0.0.1 	1  50
-bash port-scan.sh		192.168.0.1 	80 443
-bash port-scan.sh		192.168.0.1 	100 1500
+chmod +x portscan.sh
+./portscan.sh			127.0.0.1 	1  50
+source portscan.sh		127.0.0.1 	1  50
+bash portscan.sh		192.168.0.1 	80 443
+bash portscan.sh		192.168.0.1 	100 1500
 
 '
 
@@ -76,7 +76,7 @@ opcoes=("tcp" "udp" "sair")
 if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
         #dominio
         #porta
-        echo "Exemplo de uso: ./port-scan.sh google.com 50 80"
+        echo "Exemplo de uso: ./portscan.sh google.com 50 80"
 elif (expr $2 + 1 > /dev/null 2>/dev/null) && (expr $3 + 1 > /dev/null 2> /dev/null); then
                 echo -e "Selecione uma opcao a seguir\n"
         select opt in ${opcoes[@]}
