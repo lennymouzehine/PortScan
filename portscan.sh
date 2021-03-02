@@ -43,11 +43,6 @@ white="\033[35;1m"
         else
                 echo "Required port parameter"
         fi
-
-        if [[ "$3" < "$2" ]]; then
-            echo "Warning: the end port cannot be less than the start port"
-            echo "Warning: ports parameters only accepts whole numbers"
-        fi
 #}
 
 function tcp() {
@@ -76,7 +71,7 @@ function udp() {
 
 options=("tcp" "udp" "quit")
 
-if [[ -z "$1" || -z "$2" || -z "$3" || "$3" < "$2" ]]; then
+if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
         #domain
         #port
         echo "Example of use: ./portscan.sh google.com 50 80"
@@ -101,5 +96,6 @@ elif (expr $2 + 1 > /dev/null 2>/dev/null) && (expr $3 + 1 > /dev/null 2> /dev/n
         esac
         done
 else
-echo "Ports parameters only accepts whole numbers"
+echo "Warning: ports parameters only accepts whole numbers"
+echo "Warning: the end port cannot be less than the start port"
 fi
