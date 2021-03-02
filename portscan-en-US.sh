@@ -5,12 +5,12 @@
 
 : '
 	-- + usage exmaples + --
-#Starting	    		 #Domain 	#Port
-chmod +x portscan.sh
-./portscan.sh			  127.0.0.1 	1  50
-source portscan.sh	  127.0.0.1 	1  50
-bash portscan.sh		192.168.0.1 	80 443
-bash portscan.sh		192.168.0.1 	100 1500
+#Starting	    		#Domain 	#Port
+chmod +x portscan-en-US.sh
+./portscan-en-US.sh			127.0.0.1 	1  50
+source portscan-en-US.sh		127.0.0.1 	1  50
+bash portscan-en-US.sh		192.168.0.1 	80 443
+bash portscan-en-US.sh		192.168.0.1 	100 1500
 '
 
 #
