@@ -4,15 +4,13 @@
 
 
 : '
-	-- + exemplos de uso + --
-
-#Iniciando	    		#Dominio	#Portas
+	-- + usage exmaples + --
+#Starting	    		#Domain 	#Port
 chmod +x portscan.sh
 ./portscan.sh			127.0.0.1 	1  50
 source portscan.sh		127.0.0.1 	1  50
 bash portscan.sh		192.168.0.1 	80 443
 bash portscan.sh		192.168.0.1 	100 1500
-
 '
 
 #
@@ -21,65 +19,70 @@ bash portscan.sh		192.168.0.1 	100 1500
 #
 #
 
-#código
+#code
 
-cinza="\033[30;1m"
-rosa="\033[31;1m"
-verde="\033[32;1m"
-laranja="\033[33;1m"
-branco="\033[35;1m"
+grey="\033[30;1m"
+pink="\033[31;1m"
+green="\033[32;1m"
+orange="\033[33;1m"
+white="\033[35;1m"
 
-#dominio() {
+#domain() {
         if [ "$1" == "" ]; then
-                echo "Parametro dominio necessario"; 
+                echo "Required domain parameter"; 
         else
-                echo -ne "------------------------- $verde[$branco+$verde]$branco\033[m\n"
-                echo -ne $branco"Dominio: $1\033[m\n"
+                echo -ne "------------------------- $green[$white+$green]$white\033[m\n"
+                echo -ne $white"Domain: $1\033[m\n"
         fi
 #}
 
-#porta() {
+#port() {
         if [[ "$2" != "" && "$3" != "" ]]; then
-                echo -ne $branco"Portas: $2 ate $3\033[m\n"
-                echo -ne "------------------------- $verde[$branco+$verde]$branco\033[m\n"
+                echo -ne $white"Port: $2 to $3\033[m\n"
+                echo -ne "------------------------- $green[$white+$green]$white\033[m\n"
         else
-                echo "Parametros portas necessario"
+                echo "Required port parameter"
+        fi
+
+        if [[ "$3" < "$2" ]]; then
+            echo "Warning: the end port cannot be less than the start port"
+            echo "Warning: ports parameters only accepts whole numbers"
         fi
 #}
 
 function tcp() {
-    echo "Protocolo TCP selecionado"
+    echo "TCP protocol selected"
     echo ""
-    protocolo='tcp'
-    for porta in `seq $2 $3`;
+    protocol='tcp'
+    for port in `seq $2 $3`;
     do
-    timeout 0 bash -c "</dev/$protocolo/$1/$porta" &>/dev/null \
-    && echo -ne "+ - -  -- [ PORTA $porta  - ABERTA ] --  - - +     \n" \
-    || sleep 0 ; echo -ne "Escaneando porta $porta\e[K\r"
+    timeout 0 bash -c "</dev/$protocol/$1/$port" &>/dev/null \
+    && echo -ne "+ - -  -- [ PORT $port  - OPEN ] --  - - +     \n" \
+    || sleep 0 ; echo -ne "Scanning port $port\e[K\r"
     done
 }
 
 function udp() {
-    echo "Protocolo UDP selecionado"
+    echo "UDP protocol selected"
     echo ""
-    protocolo='udp'
-    for porta in `seq $2 $3`;
+    protocol='udp'
+    for port in `seq $2 $3`;
     do
-    timeout 0 bash -c "</dev/$protocolo/$1/$porta" &>/dev/null \
-    && echo -ne "+ - -  -- [ PORTA $porta  - ABERTA ] --  - - +     \n" \
-    || sleep 0 ; echo -ne "Escaneando porta $porta\e[K\r"
+    timeout 0 bash -c "</dev/$protocol/$1/$port" &>/dev/null \
+    && echo -ne "+ - -  -- [ PORT $port  - OPEN ] --  - - +     \n" \
+    || sleep 0 ; echo -ne "Scanning port $port\e[K\r"
     done
 }
 
-opcoes=("tcp" "udp" "sair")
+options=("tcp" "udp" "quit")
 
-if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
-        #dominio
-        #porta
-        echo "Exemplo de uso: ./portscan.sh google.com 50 80"
+if [[ -z "$1" || -z "$2" || -z "$3" || "$3" < "$2" ]]; then
+        #domain
+        #port
+        echo "Example of use: ./portscan.sh google.com 50 80"
 elif (expr $2 + 1 > /dev/null 2>/dev/null) && (expr $3 + 1 > /dev/null 2> /dev/null); then
-                echo -e "Selecione uma opcao a seguir\n"
-        select opt in ${opcoes[@]}
+                echo -e "Select one of the following options\n"
+        select opt in ${options[@]}
         do
         case $opt in
                 "tcp")
@@ -90,13 +93,13 @@ elif (expr $2 + 1 > /dev/null 2>/dev/null) && (expr $3 + 1 > /dev/null 2> /dev/n
                         udp $1 $2 $3
                         break
                 ;;  
-                "sair")
-                        echo "Saindo..."
+                "quit")
+                        echo "Leaving..."
                         break
                 ;;
-                *) echo "Opcao invalida"
+                *) echo "Invalid option"
         esac
         done
 else
-echo "Parametros portas aceitam somente numeros inteiros"
+echo "Ports parameters only accepts whole numbers"
 fi
