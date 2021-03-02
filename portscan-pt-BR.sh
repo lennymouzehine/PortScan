@@ -43,11 +43,6 @@ branco="\033[35;1m"
         else
                 echo "Necessario parametros de portas"
         fi
-
-        if [[ "$3" < "$2" ]]; then
-            echo "Aviso: a porta final nao pode ser menor que a porta inicial"
-            echo "Aviso: parametro porta aceita somente numeros inteiros"
-        fi
 #}
 
 function tcp() {
@@ -76,9 +71,9 @@ function udp() {
 
 opcoes=("tcp" "udp" "sair")
 
-if [[ -z "$1" || -z "$2" || -z "$3" || "$3" < "$2" ]]; then
-        #domain
-        #port
+if [[ -z "$1" || -z "$2" || -z "$3" ]]; then
+        #dominio
+        #porta
         echo "Exemplo de uso: ./portscan-pt-BR.sh google.com 80 81"
 elif (expr $2 + 1 > /dev/null 2>/dev/null) && (expr $3 + 1 > /dev/null 2> /dev/null); then
                 echo -e "Selecione uma das opcoes a seguir\n"
@@ -101,5 +96,6 @@ elif (expr $2 + 1 > /dev/null 2>/dev/null) && (expr $3 + 1 > /dev/null 2> /dev/n
         esac
         done
 else
-echo "Parametro porta aceita somente numeros inteiros"
+        echo "AVISO: a porta final nao pode ser menor que a porta inicial"
+        echo "AVISO: parametro porta aceita somente numeros inteiros"
 fi
