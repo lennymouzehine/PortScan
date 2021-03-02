@@ -6,7 +6,7 @@ Utilizando o interpretador bash, esse script irá fazer um escaneamento de porta
 ### * Utilizando o `script`
 
 ```
-$ git clone https://github.com/lennymoouzehine/PortScan
+$ git clone https://github.com/lennymouzehine/PortScan
 $ cd PortScan
 $ chmod +x portscan.sh
 $ ./portscan.sh
