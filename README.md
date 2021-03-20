@@ -6,6 +6,9 @@ Using the bash interpreter, this script will do a port scan, recommended for int
 ### * Using the `script`
 
 ```
+Updating the system (Based on Debian)
+$ sudo apt-get update && sudo apt-get upgrade
+
 Cloning script
 $ git clone https://github.com/lennymouzehine/PortScan
 
@@ -18,18 +21,21 @@ $ chmod +x portscan.sh
 Running the script
 $ ./portscan.sh
 
-Example of usage
-$ bash portscan.sh 127.0.0.1 80 443
+Example of usage: 
 ```
+<a href="https://ibb.co/hKDq8bv"><img src="https://i.ibb.co/P5wSCK8/Utilizando-o-script.png" alt="Utilizando-o-script" border="0"></a>
 
 ***
 # Português
 ***
 Usando o interpretador bash, esse script fará uma varredura de portas, recomendada para varreduras internas.
 
-### * Usando o `script`
+### * Utilizando o `script`
 
 ```
+Atualizando o sistema (Baseado em Debian)
+$ sudo apt-get update && sudo apt-get upgrade
+
 Clonando o script
 $ git clone https://github.com/lennymouzehine/PortScan
 
@@ -42,6 +48,6 @@ $ chmod +x portscan-pt-BR.sh
 Iniciando o script
 $ ./portscan-pt-BR.sh
 
-Exemplo de uso
-$ bash portscan-pt-BR.sh 127.0.0.1 80 443
+Exemplo de uso:
 ```
+<a href="https://ibb.co/2MPSkRS"><img src="https://i.ibb.co/5jvkRCk/utilizando-o-script2.png" alt="utilizando-o-script2" border="0"></a>
